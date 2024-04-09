@@ -1,0 +1,14 @@
+#calculator{
+    display:flex;
+    flex-direction: column;
+    outline: black solid 1px;
+}
+
+#display{
+    flex: auto;
+    outline: black solid 1px;
+}
+
+#btns{
+    outline: black solid 1px;
+}
