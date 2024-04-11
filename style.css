@@ -10,5 +10,6 @@
 }
 
 #btns{
+    flex:auto;
     outline: black solid 1px;
 }
