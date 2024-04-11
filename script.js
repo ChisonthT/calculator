@@ -36,7 +36,7 @@ function operation(operator, firstNum, secNum){
             break;
     }
 
-    console.log(result);
+    display.textContent = result;
 }
 
 
@@ -56,6 +56,7 @@ btns.addEventListener("click",(e)=> {
         display.textContent = '0';
         firstNum = '';
         secNum = '';
+        tempNum = '';
         operator = '';
     }
     
@@ -64,6 +65,10 @@ btns.addEventListener("click",(e)=> {
         secNum = Number(tempNum);
 
         operation(operator, firstNum, secNum);
+
+        firstNum = '';
+        secNum = '';
+        operator = '';
     }
 
     if (e.target.classList.contains('number')) {
@@ -79,7 +84,6 @@ btns.addEventListener("click",(e)=> {
             display.textContent += e.target.textContent;
             operator = e.target.classList[1];
             firstNum = Number(tempNum);
-            console.log(firstNum);
             tempNum = '';
         }
 })
