@@ -41,9 +41,8 @@ function operation(operator, firstNum, secNum){
 
 
 let tempNum = '';
-let firstNum = '';
-let secNum = '';
-let operator = ''; 
+let nums = [];
+let operations = [];
 let display = document.querySelector('p');
 
 
@@ -58,17 +57,15 @@ btns.addEventListener("click",(e)=> {
         secNum = '';
         tempNum = '';
         operator = '';
+        nums = [];
+        operations = [];
     }
     
     
     if (e.target.classList.contains('equal')){
-        secNum = Number(tempNum);
+        nums.push(Number(tempNum));
 
-        operation(operator, firstNum, secNum);
-
-        firstNum = '';
-        secNum = '';
-        operator = '';
+        operation(operations[0], nums[0],nums[1]);
     }
 
     if (e.target.classList.contains('number')) {
@@ -82,8 +79,8 @@ btns.addEventListener("click",(e)=> {
         (e.target.classList[1] == 'multiply') ||
         (e.target.classList[1] == 'divide')){
             display.textContent += e.target.textContent;
-            operator = e.target.classList[1];
-            firstNum = Number(tempNum);
+            operations.push(e.target.classList[1]);
+            nums.push(Number(tempNum));
             tempNum = '';
         }
 })
