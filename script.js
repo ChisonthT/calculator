@@ -36,7 +36,7 @@ function operation(operator, firstNum, secNum){
             break;
     }
 
-    display.textContent = result;
+    return result;
 }
 
 
@@ -62,13 +62,21 @@ btns.addEventListener("click",(e)=> {
     
     
     if (e.target.classList.contains('equal')){
-        secNum = Number(tempNum);
+        if ((firstNum != '') &&
+            (tempNum != '') &&
+            (operator != '')){
+                firstNum = operation(operator,firstNum,Number(tempNum));
+                operator = '';
+                tempNum = '';
+                display.textContent = firstNum;
+            }
+    }
 
-        operation(operator, firstNum, secNum);
-
-        firstNum = '';
-        secNum = '';
-        operator = '';
+    if (e.target.classList.contains("point")){
+        if ((!(tempNum.includes('.'))) && (tempNum != "")){
+            display.textContent += e.target.textContent;
+            tempNum = tempNum + e.target.textContent;
+        }
     }
 
     if (e.target.classList.contains('number')) {
@@ -81,9 +89,41 @@ btns.addEventListener("click",(e)=> {
         (e.target.classList[1] == 'subtract') ||
         (e.target.classList[1] == 'multiply') ||
         (e.target.classList[1] == 'divide')){
-            display.textContent += e.target.textContent;
-            operator = e.target.classList[1];
-            firstNum = Number(tempNum);
-            tempNum = '';
+
+            if ((firstNum !='') && 
+                (operator != '') && 
+                (secNum == '') && 
+                (tempNum =='')&&
+                (operator == e.target.classList[1])){
+
+                firstNum = operation(operator, firstNum, firstNum);
+                operator = e.target.classList[1];
+                display.textContent = firstNum;
+            }
+
+            if ((firstNum == '') && 
+                (secNum =='') && 
+                (operator =='') &&
+                (tempNum != '')){
+                firstNum = Number(tempNum);
+                operator = e.target.classList[1];
+                tempNum ='';
+            }
+            
+            if ((firstNum !='') && 
+                (operator != '') && 
+                (secNum == '') && 
+                (tempNum !='')){
+                firstNum = operation(operator, firstNum, Number(tempNum));
+                operator = e.target.classList[1];
+                tempNum ='';
+                display.textContent = firstNum;
+            }
+
+            if ((firstNum != '') &&
+                (operator == '') &&
+                (tempNum == '')){
+                    operator = e.target.classList[1];
+                }
         }
 })
