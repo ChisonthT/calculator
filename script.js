@@ -51,7 +51,7 @@ let btns = document.querySelector('#btns');
 
 
 btns.addEventListener("click",(e)=> {
-
+    
     if (e.target.classList.contains('clear')){
         display.textContent = '0';
         firstNum = '';
@@ -79,7 +79,7 @@ btns.addEventListener("click",(e)=> {
         }
     }
 
-    if (e.target.classList.contains('number')) {
+    if ((e.target.classList.contains('number')) && (tempNum.length <= 8)) {
         display.textContent += e.target.textContent;
         
         tempNum = tempNum + e.target.textContent;
